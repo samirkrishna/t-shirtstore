@@ -1,5 +1,4 @@
 const express = require("express");
-const homeRoutes = require("./routes/home");
 const app = express();
 
 const cookieParser = require("cookie-parser");
@@ -23,7 +22,12 @@ app.use(fileUpload());
 //morgan
 app.use(morgan("tiny"));
 
+//Custom middlewares
+const homeRoutes = require("./routes/home");
+const userRoutes = require("./routes/user");
+
 //router middlewares
 app.use("/api/v1", homeRoutes);
+app.use("/api/v1", userRoutes);
 
 module.exports = app;
